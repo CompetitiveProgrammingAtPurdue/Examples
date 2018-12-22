@@ -52,4 +52,12 @@ int main() {
 		//Use the same string again by calling strtok with NULL.
 		j = strtok(NULL, ",");
 	}
+
+	//Atoi and Atof can be used to convert strings to integer and floats/doubles.
+	int int1 = atoi("390");
+	int int2 = atoi("240");
+	printf("%d\n", int1 - int2);
+	double d1 = atof("89.1");
+	double d2 = atof("23.4");
+	printf("%f\n", d1 - d2);
 }
