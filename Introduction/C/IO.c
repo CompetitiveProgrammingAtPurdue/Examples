@@ -18,7 +18,7 @@ int main() {
 	//In this case, I will use a getc() to remove it.
 	getc(stdin);
 
-	//Getc is also available, but is only useful in certain cases.
+	//Getc is also available. It is much safer than scanf.
 	//A file stream must be specified, so you can use this on files as well.
 	//It is a safe option, because you know what you're going to get.
 	printf("Type a single character.\n");
