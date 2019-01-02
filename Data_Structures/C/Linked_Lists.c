@@ -108,6 +108,7 @@ int main() {
 	int index;
 	while (1) {
 		printf(">");
+		memset(command, 0, 10);
 		scanf("%s", command);
 		if (!strcmp(command, "Insert")) {
 			scanf(" %d %d", &value, &index);
