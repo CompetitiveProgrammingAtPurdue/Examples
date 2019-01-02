@@ -3,11 +3,6 @@
 #include <string.h>
 
 void Merge_Sort(int * array, int low, int high) {
-	printf("> %d", *(array + low));
-	for (int i = low + 1; i <= high; i++) {
-		printf(" %d", *(array + i));
-	}
-	printf("\n");
 	//An array of size 2 is the base case.
 	if (high - low == 1) {
 		int a = *(array + low);
@@ -24,26 +19,19 @@ void Merge_Sort(int * array, int low, int high) {
 		return;
 	//If it is larger than 2, it must be merged.
 	} else {
-		//Sort the first half
+		//Sort the first half.
 		int middle = (low + high) / 2;
 		Merge_Sort(array, low, middle);
-		printf("< %d", *(array + low));
-		for (int i = low + 1; i <= middle; i++) {
-			printf(" %d", *(array + i));
-		}
-		printf("\n");
 		//Sort the second half, consider odd lengths.
 		Merge_Sort(array, middle + 1, high);
-		printf("< %d", *(array + middle + 1));
-		for (int i = middle + 2; i <= high; i++) {
-			printf(" %d", *(array + i));
-		}
-		printf("\n");
+		//Allocate an auxiliary array.
 		int * temp = malloc(high - low + 1 * sizeof(int));
 		int left = low;
 		int right = middle + 1;
 		int i = 0;
+		//Go through elements of the left and right halves of the array.
 		while (left <= middle && right <= high) {
+			//Insert the lower element in the temp array.
 			if (*(array + left) <= *(array + right)) {
 				*(temp + i) = *(array + left);
 				left++;
@@ -53,6 +41,7 @@ void Merge_Sort(int * array, int low, int high) {
 			}
 			i++;
 		}
+		//Insert the remaining elements in the temp array.
 		while (left <= middle) {
 			*(temp + i) = *(array + left);
 			left++;
@@ -64,6 +53,7 @@ void Merge_Sort(int * array, int low, int high) {
 			i++;
 		}
 		i = 0;
+		//Copy the temp array to the current range.
 		while (low <= high) {
 			*(array + low) = *(temp + i);
 			low++;
