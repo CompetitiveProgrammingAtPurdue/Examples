@@ -5,14 +5,16 @@ typedef enum {
 } heap_type;
 
 //This is the heap definition. Make sure to declare the heap as a struct heap *.
-typedef struct {
+typedef struct heap {
+	struct heap * left;
+	struct heap * right;
 	int priority;
 	int value;
 	heap_type type;
 } heap;
 
-//Initialize the heap.
-heap * H_Create(void);
+//Initialize the heap with a type and initial value with priority.
+heap * H_Create(heap_type type, int value, int priority);
 
 //Free all nodes of the heap, including the root.
 void H_Destory(heap * heap);
