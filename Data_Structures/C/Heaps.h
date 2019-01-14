@@ -1,16 +1,16 @@
 //We will use this enum to determine if the heap is a min heap or max heap.
 typedef enum {
-	MIN,
-	MAX,
+  MIN,
+  MAX,
 } heap_type;
 
 //This is the heap definition. Make sure to declare the heap as a struct heap *.
 typedef struct heap {
-	struct heap * left;
-	struct heap * right;
-	int priority;
-	int value;
-	heap_type type;
+  struct heap * left;
+  struct heap * right;
+  int priority;
+  int value;
+  heap_type type;
 } heap;
 
 //Initialize the heap with a type and initial value with priority.

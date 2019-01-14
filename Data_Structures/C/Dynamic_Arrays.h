@@ -1,9 +1,9 @@
 //This struct is used to store meta data about the array.
 typedef struct {
-	int * data;
-	int length;
-	int used;
-	int min;
+  int * data;
+  int length;
+  int used;
+  int min;
 } dynamic_array;
 
 //Initialize the dynamic array

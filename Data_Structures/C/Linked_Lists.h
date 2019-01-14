@@ -1,9 +1,9 @@
 //This is the node definition. Make sure to declare the node as a struct node *.
 //For this example, we'll make a doubly linked circular list with a head node.
 typedef struct node {
-	struct node * next;
-	struct node * prev;
-	int value;
+  struct node * next;
+  struct node * prev;
+  int value;
 } node;
 
 //Initialize the linked list.
