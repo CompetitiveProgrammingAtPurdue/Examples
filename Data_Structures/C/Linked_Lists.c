@@ -49,27 +49,36 @@ void LL_Insert(node * list, int value, int index) {
 	current->prev = new;
 }
 
-int LL_Remove(node * list, int index) {
+void LL_Delete(node * list, int index) {
 	if (index < 0) {
-		return 0;
+		return;
 	}
 	//Start at node 0.
 	node * current = list->next;
 	//Go to the index.
 	for (int i = 0; i < index; i++) {
 		if (current == list) {
-			return 0;
+			return;
 		}
 		current = current->next;
 	}
-	//Save the value.
-	int value = current->value;
 	//Weave the current node out of the list.
 	current->prev->next = current->next;
 	current->next->prev = current->prev;
 	//Free the current node.
 	free(current);
-	return value;
+}
+
+int LL_Find(node * list, int value) {
+	int i = 0;
+	node * current = list->next;
+	while (current != list) {
+		if (current->value == value) {
+			return i;
+		}
+		current = current->next;
+	}
+	return -1;
 }
 
 int LL_Length(node * list) {
@@ -99,7 +108,7 @@ int main() {
 	node * list = LL_Create();
 	printf("Options:\n");
 	printf("Insert <value> <index>\n");
-	printf("Remove <index>\n");
+	printf("Delete <index>\n");
 	printf("Length\n");
 	printf("Print\n");
 	printf("Exit\n");
@@ -114,10 +123,10 @@ int main() {
 			scanf(" %d %d", &value, &index);
 			getchar();
 			LL_Insert(list, value, index);
-		} else if (!strcmp(command, "Remove")) {
+		} else if (!strcmp(command, "Delete")) {
 			scanf(" %d", &index);
 			getchar();
-			printf("%d\n", LL_Remove(list, index));
+			LL_Delete(list, index);
 		} else if (!strcmp(command, "Length")) {
 			getchar();
 			printf("%d\n", LL_Length(list));

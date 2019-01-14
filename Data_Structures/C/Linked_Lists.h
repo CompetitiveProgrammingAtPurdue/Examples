@@ -15,8 +15,11 @@ void LL_Destroy(node * list);
 //Insert a value at an index.
 void LL_Insert(node * list, int value, int index);
 
-//Remove and return a value at an index.
-int LL_Remove(node * list, int index);
+//Delete an element.
+void LL_Delete(node * list, int index);
+
+//Find a value
+int LL_Find(node * list, int value);
 
 //Get the length of the list.
 int LL_Length(node * list);
