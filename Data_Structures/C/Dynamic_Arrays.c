@@ -7,8 +7,7 @@
 dynamic_array * DA_Create(int size) {
   //Allocate the struct and data.
   dynamic_array * array = malloc(sizeof(dynamic_array));
-  //Use calloc to guarantee cleared data.
-  array->data = calloc(size, sizeof(int));
+  array->data = malloc(size * sizeof(int));
   array->length = size;
   array->used = 0;
   array->min = size;
@@ -43,16 +42,10 @@ void DA_Insert(dynamic_array * array, int value, int index) {
   }
   //If the array is full, resize.
   if (array->used == array->length) {
-    //Use calloc to guarantee clear data.
-    int * temp = calloc(array->length * 2, sizeof(int));
-    //Copy the old data into the new data.
-    memcpy(temp, array->data, array->length * sizeof(int));
-    //Free the old data.
-    free(array->data);
-    //Save the new data.
-    array->data = temp;
-    //Double the stored length.
+    //Double the array length.
     array->length *= 2;
+    //Reallocate with the new length.
+    array->data = realloc(array->data, array->length * sizeof(int));
   }
   //If the index is at the end of the used data, store it.
   if (index == array->used) {
@@ -78,10 +71,10 @@ void DA_Delete(dynamic_array * array, int index) {
   array->used--;
   //If used is 1/4 of length, resize.
   if (array->used <= array->length / 4 && array->length / 2 >= array->min) {
-    //Realloc can be used to resize allocated pointers, but does not clear new data.
-    array->data = realloc(array->data, (array->length / 2) * sizeof(int));
-    //Store the new length
+    //Store the new length.
     array->length /= 2;
+    //Realloc can be used to resize allocated pointers, but does not clear new data.
+    array->data = realloc(array->data, array->length * sizeof(int));
   }
 }
 

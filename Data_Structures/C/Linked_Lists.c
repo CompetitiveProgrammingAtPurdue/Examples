@@ -3,17 +3,17 @@
 #include <string.h>
 #include "Linked_Lists.h"
 
-node * LL_Create(void) {
-  //Allocate the head node
-  node * list = malloc(sizeof(node));
+list_node * LL_Create(void) {
+  //Allocate the head list_node
+  list_node * list = malloc(sizeof(list_node));
   //Set its next and previous pointers to itself, making a circular list.
   list->next = list;
   list->prev = list;
   list->value = 0;
 }
 
-void LL_Destroy(node * list) {
-  node * current;
+void LL_Destroy(list_node * list) {
+  list_node * current;
   //While there are nodes in the list
   while (list->next != list) {
     //Save a pointer to the first node.
@@ -26,12 +26,12 @@ void LL_Destroy(node * list) {
   free(list);
 }
 
-void LL_Insert(node * list, int value, int index) {
+void LL_Insert(list_node * list, int value, int index) {
   if (index < 0) {
     return;
   }
   //Start at node 0.
-  node * current = list->next;
+  list_node * current = list->next;
   //Go to the index.
   for (int i = 0; i < index; i++) {
     if (current == list) {
@@ -40,7 +40,7 @@ void LL_Insert(node * list, int value, int index) {
     current = current->next;
   }
   //Allocate the new node.
-  node * new = malloc(sizeof(node));
+  list_node * new = malloc(sizeof(list_node));
   new->value = value;
   //Weave the new node into the list before the current node.
   new->next = current;
@@ -49,12 +49,12 @@ void LL_Insert(node * list, int value, int index) {
   current->prev = new;
 }
 
-void LL_Delete(node * list, int index) {
+void LL_Delete(list_node * list, int index) {
   if (index < 0) {
     return;
   }
   //Start at node 0.
-  node * current = list->next;
+  list_node * current = list->next;
   //Go to the index.
   for (int i = 0; i < index; i++) {
     if (current == list) {
@@ -69,9 +69,9 @@ void LL_Delete(node * list, int index) {
   free(current);
 }
 
-int LL_Find(node * list, int value) {
+int LL_Find(list_node * list, int value) {
   int i = 0;
-  node * current = list->next;
+  list_node * current = list->next;
   while (current != list) {
     if (current->value == value) {
       return i;
@@ -81,9 +81,9 @@ int LL_Find(node * list, int value) {
   return -1;
 }
 
-int LL_Length(node * list) {
+int LL_Length(list_node * list) {
   //Start at node 0.
-  node * current = list->next;
+  list_node * current = list->next;
   //Go to the end and count.
   int length = 0;
   while (current != list) {
@@ -93,9 +93,9 @@ int LL_Length(node * list) {
   return length;
 }
 
-void LL_Print(node * list) {
+void LL_Print(list_node * list) {
   //Start at node 0.
-  node * current = list->next;
+  list_node * current = list->next;
   //Go to the end and print.
   while (current != list) {
     printf("%d ", current->value);
@@ -105,7 +105,7 @@ void LL_Print(node * list) {
 }
 
 int main() {
-  node * list = LL_Create();
+  list_node * list = LL_Create();
   printf("Options:\n");
   printf("Insert <value> <index>\n");
   printf("Delete <index>\n");
