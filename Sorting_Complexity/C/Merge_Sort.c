@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Merge_Sort.h"
 
 void Merge_Sort(int * array, int low, int high) {
 	//An array of size 2 is the base case.
@@ -74,7 +75,7 @@ int main(int argc, char ** argv) {
 		*(array + i) = atoi(argv[i + 1]);
 	}
 	Merge_Sort(array, 0, argc - 2);
-	printf("< %d", *(array));
+	printf("> %d", *(array));
 	for (int i = 1; i < argc - 1; i++) {
 		printf(" %d", *(array + i));
 	}
