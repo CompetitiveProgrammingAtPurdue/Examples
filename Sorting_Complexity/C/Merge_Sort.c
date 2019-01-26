@@ -26,7 +26,7 @@ void Merge_Sort(int * array, int low, int high) {
 		//Sort the second half, consider odd lengths.
 		Merge_Sort(array, middle + 1, high);
 		//Allocate an auxiliary array.
-		int * temp = malloc(high - low + 1 * sizeof(int));
+		int * temp = malloc((high - low + 1) * sizeof(int));
 		int left = low;
 		int right = middle + 1;
 		int i = 0;
